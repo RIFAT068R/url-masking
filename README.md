@@ -1,5 +1,7 @@
 # URL Masking
 
+[![Live Site](https://img.shields.io/badge/live-urlmasking.vercel.app-090909?style=flat-square)](https://urlmasking.vercel.app/)
+
 A minimal Flask web tool for generating URL masking examples from an original URL, display domain, and keywords. The interface uses a clean black-and-white layout with a centered form, subtle card styling, and a modern animated generate button.
 
 Live site: [https://urlmasking.vercel.app/](https://urlmasking.vercel.app/)
