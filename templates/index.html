@@ -4,9 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Masker</title>
+    <title>URL Masking</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/style.css">
-    <link rel="icon" href="../static//images/logo.png">
+    <link rel="icon" type="image/svg+xml" href="../static/images/favicon.svg">
     <script>
         function validateForm(event) {
             const webUrl = document.getElementById("web_url").value.trim();
@@ -15,56 +18,140 @@
 
             if (!webUrl || !customDomain || !phishKeywords) {
                 alert("Please fill out all fields correctly.");
-                event.preventDefault(); // Prevent form submission if fields are empty
+                event.preventDefault();
             }
+        }
+
+        function copyMaskedUrl(button) {
+            const value = button.dataset.url;
+            navigator.clipboard.writeText(value).then(() => {
+                const label = button.getAttribute("aria-label") || "Copy";
+                button.classList.add("copied");
+                button.setAttribute("aria-label", "Copied");
+                setTimeout(() => {
+                    button.classList.remove("copied");
+                    button.setAttribute("aria-label", label);
+                }, 1400);
+            });
         }
     </script>
 </head>
 
 <body>
-    <div class="logo">
-        <img src="../static/images/logo.png" alt="Logo" width="150">
+    <div class="page-shell">
+        <header class="site-header">
+            <nav class="header-inner" aria-label="Primary navigation">
+                <a class="brand" href="/" aria-label="URL Shield home">
+                    <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M10 13a5 5 0 0 0 7.07 0l2.12-2.12a5 5 0 0 0-7.07-7.07l-1.22 1.22" />
+                        <path d="M14 11a5 5 0 0 0-7.07 0L4.81 13.12a5 5 0 0 0 7.07 7.07l1.22-1.22" />
+                    </svg>
+                    <span>URL Masking</span>
+                </a>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <section class="intro" aria-labelledby="page-title">
+                <p class="eyebrow">URL Tool</p>
+                <h1 id="page-title">URL Masking</h1>
+            </section>
+
+            <section class="tool-card card" aria-labelledby="create-demo-title">
+                <div class="card-header">
+                    <div>
+                        <h2 id="create-demo-title">Create Demo</h2>
+                    </div>
+                </div>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                <div class="message-list" role="alert">
+                    {% for category, message in messages %}
+                    <p class="error">{{ message }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endwith %}
+
+                <form method="POST" onsubmit="validateForm(event)" class="mask-form">
+                    <div class="field-group">
+                        <label for="web_url">Original URL</label>
+                        <div class="input-wrap">
+                            <svg class="field-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M7 17 17 7" />
+                                <path d="M7 7h10v10" />
+                            </svg>
+                            <input type="url" id="web_url" name="web_url" placeholder="https://example.com/page" required>
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="custom_domain">Display Domain</label>
+                        <div class="input-wrap">
+                            <svg class="field-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M2 12h20" />
+                                <path d="M12 2a15.3 15.3 0 0 1 0 20" />
+                                <path d="M12 2a15.3 15.3 0 0 0 0 20" />
+                            </svg>
+                            <input type="text" id="custom_domain" name="custom_domain" placeholder="trusted-example.com" required>
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="phish_keywords">Keywords</label>
+                        <div class="input-wrap">
+                            <svg class="field-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M4 9h16" />
+                                <path d="M4 15h16" />
+                                <path d="M10 3 8 21" />
+                                <path d="m16 3-2 18" />
+                            </svg>
+                            <input type="text" id="phish_keywords" name="phish_keywords" placeholder="secure-login" required>
+                        </div>
+                    </div>
+
+                    <button class="gradient-button rotating-gradient" type="submit">
+                        <span class="button-label">Generate</span>
+                    </button>
+                </form>
+            </section>
+
+            {% if original_url %}
+            <section class="results-card card" aria-labelledby="demo-result-title">
+                <div class="card-header">
+                    <div>
+                        <h2 id="demo-result-title">Result</h2>
+                    </div>
+                </div>
+
+                <div class="result-row original-row">
+                    <span class="result-label">Original URL</span>
+                    <span class="result-value">{{ original_url }}</span>
+                </div>
+
+                <div class="result-list" aria-label="Generated examples">
+                    {% for url in masked_urls %}
+                    <div class="result-row generated-row">
+                        <span class="result-value">{{ url }}</span>
+                        <button class="copy-button" type="button" data-url="{{ url }}" onclick="copyMaskedUrl(this)" aria-label="Copy generated URL">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                            </svg>
+                        </button>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+            {% endif %}
+        </main>
+
+        <footer class="site-footer">
+            <p>URL Masking</p>
+        </footer>
     </div>
-    <h1>URL Masking Tool</h1>
-    <form method="POST" onsubmit="validateForm(event)">
-        <label for="web_url">Original URL:</label><br>
-        <input type="url" id="web_url" name="web_url" placeholder="https://example.com" required><br>
-
-        <label for="custom_domain">Custom Domain:</label><br>
-        <input type="text" id="custom_domain" name="custom_domain" placeholder="example.com" required><br>
-
-        <label for="phish_keywords">Phishing Keywords:</label><br>
-        <input type="text" id="phish_keywords" name="phish_keywords" placeholder="free-stuff, login" required><br>
-
-        <button type="submit">Mask URL</button>
-    </form>
-
-    {% if original_url %}
-    <div class="results">
-        <h2>Original URL:</h2>
-        <p>{{ original_url }}</p>
-
-        <h2>Masked URLs:</h2>
-        <ul>
-            {% for url in masked_urls %}
-            <li>{{ url }}</li>
-            {% endfor %}
-        </ul>
-    </div>
-    <footer>
-        <p style="text-align: center; margin-top: 20px;">Made with ❤️ by <strong>Anand Velpuri</strong></p>
-    </footer>
-    {% endif %}
-
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    <ul>
-        {% for category, message in messages %}
-        <li class="error">{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    {% endwith %}
 </body>
 
 </html>
