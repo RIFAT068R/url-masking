@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, flash, send_from_directory
+from flask import Flask, Response, render_template, request, flash
 from urllib.parse import urlparse
 import pyshorteners
 import re
@@ -76,11 +76,26 @@ def index():
 
 @app.route("/robots.txt")
 def robots_txt():
-    return send_from_directory("static", "robots.txt", mimetype="text/plain")
+    return Response(
+        "User-agent: *\nAllow: /\n\nSitemap: https://urlmasking.vercel.app/sitemap.xml\n",
+        mimetype="text/plain",
+    )
 
 @app.route("/sitemap.xml")
 def sitemap_xml():
-    return send_from_directory("static", "sitemap.xml", mimetype="application/xml")
+    return Response(
+        """<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://urlmasking.vercel.app/</loc>
+    <lastmod>2026-07-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
+""",
+        mimetype="application/xml",
+    )
 
 if __name__ == "__main__":
     app.run(debug=True)
