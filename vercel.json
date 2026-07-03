@@ -3,6 +3,7 @@
     "routes": [
         {"src": "/robots.txt", "dest": "app.py"},
         {"src": "/sitemap.xml", "dest": "app.py"},
+        {"src": "/googlef62cf14d0321ed1e.html", "dest": "app.py"},
         {"src": "/(.*)", "dest": "app.py"}
     ]
 }

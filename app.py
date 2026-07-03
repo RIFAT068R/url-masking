@@ -97,5 +97,12 @@ def sitemap_xml():
         mimetype="application/xml",
     )
 
+@app.route("/googlef62cf14d0321ed1e.html")
+def google_site_verification():
+    return Response(
+        "google-site-verification: googlef62cf14d0321ed1e.html",
+        mimetype="text/html",
+    )
+
 if __name__ == "__main__":
     app.run(debug=True)
