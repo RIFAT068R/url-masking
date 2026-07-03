@@ -145,6 +145,26 @@ h1 {
   line-height: 1.6;
 }
 
+.about-tool {
+  margin-top: 18px;
+  color: var(--secondary);
+  text-align: center;
+}
+
+.about-tool h2 {
+  margin-bottom: 8px;
+  color: var(--text);
+  font-size: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.about-tool p {
+  max-width: 620px;
+  margin: 0 auto;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
 .card {
   width: 100%;
   border: 1px solid var(--border);

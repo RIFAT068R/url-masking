@@ -4,12 +4,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Masking</title>
+    <title>URL Masking - Generate Masked URL Examples</title>
+    <meta name="description" content="URL Masking is a minimal web tool for generating masked URL examples from an original URL, display domain, and keywords.">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="URL Masking">
+    <link rel="canonical" href="https://urlmasking.vercel.app/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://urlmasking.vercel.app/">
+    <meta property="og:title" content="URL Masking - Generate Masked URL Examples">
+    <meta property="og:description" content="A minimal web tool for generating masked URL examples from an original URL, display domain, and keywords.">
+    <meta property="og:site_name" content="URL Masking">
+    <meta property="og:image" content="https://urlmasking.vercel.app/static/images/favicon.svg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="URL Masking - Generate Masked URL Examples">
+    <meta name="twitter:description" content="Generate masked URL examples with a clean, focused URL masking tool.">
+    <meta name="twitter:image" content="https://urlmasking.vercel.app/static/images/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="icon" type="image/svg+xml" href="../static/images/favicon.svg">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "WebSite",
+                    "@id": "https://urlmasking.vercel.app/#website",
+                    "url": "https://urlmasking.vercel.app/",
+                    "name": "URL Masking",
+                    "description": "A minimal web tool for generating masked URL examples.",
+                    "inLanguage": "en"
+                },
+                {
+                    "@type": "SoftwareApplication",
+                    "@id": "https://urlmasking.vercel.app/#software",
+                    "name": "URL Masking",
+                    "applicationCategory": "UtilitiesApplication",
+                    "operatingSystem": "Web",
+                    "url": "https://urlmasking.vercel.app/",
+                    "description": "Generate masked URL examples from an original URL, display domain, and keywords.",
+                    "offers": {
+                        "@type": "Offer",
+                        "price": "0",
+                        "priceCurrency": "USD"
+                    }
+                }
+            ]
+        }
+    </script>
     <script>
         function validateForm(event) {
             const webUrl = document.getElementById("web_url").value.trim();
@@ -55,6 +98,7 @@
             <section class="intro" aria-labelledby="page-title">
                 <p class="eyebrow">URL Tool</p>
                 <h1 id="page-title">URL Masking</h1>
+                <p class="subtitle">Generate masked URL examples from an original URL, display domain, and keywords.</p>
             </section>
 
             <section class="tool-card card" aria-labelledby="create-demo-title">
@@ -146,6 +190,11 @@
                 </div>
             </section>
             {% endif %}
+
+            <section class="about-tool" aria-labelledby="about-tool-title">
+                <h2 id="about-tool-title">About URL Masking</h2>
+                <p>URL Masking is a focused web utility for creating masked URL examples with a clean form, quick generation, and copy-ready results.</p>
+            </section>
         </main>
 
         <footer class="site-footer">

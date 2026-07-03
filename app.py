@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request, flash
+from flask import Flask, render_template, request, flash, send_from_directory
 from urllib.parse import urlparse
 import pyshorteners
 import re
 
 app = Flask(__name__)
 app.secret_key = "secret_key"
+SITE_URL = "https://urlmasking.vercel.app"
 
 # Initialize the URL shorteners
 s = pyshorteners.Shortener()
@@ -72,6 +73,14 @@ def index():
             flash(str(e), "error")
     
     return render_template("index.html")
+
+@app.route("/robots.txt")
+def robots_txt():
+    return send_from_directory("static", "robots.txt", mimetype="text/plain")
+
+@app.route("/sitemap.xml")
+def sitemap_xml():
+    return send_from_directory("static", "sitemap.xml", mimetype="application/xml")
 
 if __name__ == "__main__":
     app.run(debug=True)

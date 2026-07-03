@@ -2,6 +2,8 @@
 
 A minimal Flask web tool for generating URL masking examples from an original URL, display domain, and keywords. The interface uses a clean black-and-white layout with a centered form, subtle card styling, and a modern animated generate button.
 
+Live site: [https://urlmasking.vercel.app/](https://urlmasking.vercel.app/)
+
 ## Features
 
 - Minimal black-and-white web interface.
@@ -10,6 +12,8 @@ A minimal Flask web tool for generating URL masking examples from an original UR
 - Copy button for generated results.
 - Responsive centered layout for desktop and mobile.
 - Custom SVG favicon and clean browser tab title.
+- SEO metadata, canonical URL, Open Graph tags, Twitter card tags, and JSON-LD schema.
+- Public `robots.txt` and `sitemap.xml` for search engine discovery.
 
 ## Installation
 
@@ -73,8 +77,10 @@ url-masking/
 ├── static/
 │   ├── css/
 │   │   └── style.css
-│   └── images/
-│       └── favicon.svg
+│   ├── images/
+│   │   └── favicon.svg
+│   ├── robots.txt
+│   └── sitemap.xml
 ├── templates/
 │   └── index.html
 ├── vercel.json
@@ -86,6 +92,13 @@ url-masking/
 
 - Flask
 - pyshorteners
+
+## SEO Files
+
+- Homepage: `https://urlmasking.vercel.app/`
+- Sitemap: `https://urlmasking.vercel.app/sitemap.xml`
+- Robots: `https://urlmasking.vercel.app/robots.txt`
+- Canonical URL: `https://urlmasking.vercel.app/`
 
 ## License
 
