@@ -1,98 +1,92 @@
-# URL Masker
+# URL Masking
 
-A simple Flask-based web application that allows users to mask URLs by combining custom domains and phishing keywords. This tool is designed for educational purposes and should be used responsibly.
+A minimal Flask web tool for generating URL masking examples from an original URL, display domain, and keywords. The interface uses a clean black-and-white layout with a centered form, subtle card styling, and a modern animated generate button.
 
 ## Features
 
-- Input original URLs, custom domains, and phishing keywords.
-- Generates multiple masked URLs using popular URL shorteners.
-- Fully responsive and mobile-friendly design.
-- Validation ensures all fields are filled correctly before displaying results.
+- Minimal black-and-white web interface.
+- Original URL, display domain, and keyword inputs.
+- Generates masked URL examples using available shortener services.
+- Copy button for generated results.
+- Responsive centered layout for desktop and mobile.
+- Custom SVG favicon and clean browser tab title.
 
 ## Installation
 
-1. **Clone the Repository**:
+1. Clone the repository:
 
    ```bash
-   git clone https://github.com/anandvelpuri/url-masker.git
-   cd url-masker
+   git clone https://github.com/RIFAT068R/url-masking.git
+   cd url-masking
    ```
 
-2. **Create and Activate a Virtual Environment**:
+2. Create and activate a virtual environment:
+
    ```bash
-   python3 -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   python -m venv venv
    ```
-3. **Install Dependencies**:
+
+   Windows:
+
+   ```bash
+   venv\Scripts\activate
+   ```
+
+   macOS/Linux:
+
+   ```bash
+   source venv/bin/activate
+   ```
+
+3. Install dependencies:
+
    ```bash
    pip install -r requirements.txt
    ```
-4. **Run the Application**:
+
+4. Run the application:
+
    ```bash
    python app.py
    ```
-5. Open your browser and go to: [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
-## File Structure
+5. Open the app:
 
-```
-project-root/
-├── app.py                # Main Flask application
-├── requirements.txt      # Python dependencies
-├── static/
-│   ├── css/
-│   │   └── styles.css    # Custom styles
-│   ├── images/
-│   │   └── logo.png      # Application logo
-├── templates/
-│   └── index.html        # HTML template
-└── README.md             # Project documentation
-```
+   ```text
+   http://127.0.0.1:5000
+   ```
 
 ## Usage
 
-1. Enter the **original URL** (e.g., `https://example.com`).
-2. Provide a **custom domain** (e.g., `example.org`).
-3. Enter **phishing keywords** (e.g., `free-stuff` or `login`).
-4. Click the "Mask URL" button.
-5. If all fields are valid, masked URLs will be displayed below the form.
+1. Enter an original URL, such as `https://example.com/page`.
+2. Enter a display domain, such as `trusted-example.com`.
+3. Enter keywords, such as `secure-login`.
+4. Click `Generate`.
+5. Copy any generated result from the result section.
+
+## Project Structure
+
+```text
+url-masking/
+├── app.py
+├── requirements.txt
+├── static/
+│   ├── css/
+│   │   └── style.css
+│   └── images/
+│       └── favicon.svg
+├── templates/
+│   └── index.html
+├── vercel.json
+├── LICENSE
+└── README.md
+```
 
 ## Dependencies
 
 - Flask
 - pyshorteners
 
-Install dependencies using:
-
-```bash
-pip install -r requirements.txt
-```
-
-## Screenshots
-
-![Screenshot of the application](static/images/Screenshot.png)
-![Screenshot of the application](static/images/Screenshot2.png)
-![Screenshot of the application](static/images/Screenshot3.png)
-
 ## License
 
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
-
-## Disclaimer
-
-This tool is for educational purposes only. Misuse of this tool for malicious purposes is strictly prohibited. The creator is not responsible for any unethical use of this application.
-
-## Contributing
-
-Contributions are welcome! Feel free to submit a pull request or report issues.
-
-## Developed By
-
-**Anand Velpuri**  
-[GitHub](https://github.com/Anand-Velpuri)  
-[Email](mailto:velpurianand8005@gmail.com)
-
-```
-
-Let me know if you need further customization or clarification!
-```
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
